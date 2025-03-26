@@ -1,0 +1,27 @@
+import java.util.HashMap;
+import java.util.Map;
+
+class FoodWasteTracker {
+    private Map<String, Integer> expiringIngredients = new HashMap<>();
+
+    public void addExpiringIngredient(String ingredient, int daysLeft) {
+        expiringIngredients.put(ingredient, daysLeft);
+    }
+
+    public void suggestRecipesForExpiringIngredients(RecipeManager manager) {
+        System.out.println("Recipes to use expiring ingredients:");
+        for (String ingredient : expiringIngredients.keySet()) {
+            manager.recommendRecipes(ingredient);
+        }
+    }
+    public void displayExpiringIngredients(Map<String, Ingredient> ingredients) {
+        System.out.println("Expiring ingredients:");
+        for (Ingredient ingredient : ingredients.values()) {
+            if (ingredient.getQuantity() <= 3) { // You can adjust the threshold here
+                System.out.println(ingredient.getName() + " - Quantity: " + ingredient.getQuantity());
+            }
+        }
+    }
+
+
+}
