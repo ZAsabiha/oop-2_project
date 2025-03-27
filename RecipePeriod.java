@@ -1,12 +1,12 @@
 import java.util.*;
 
 class RecipePeriod {
-    // Method to suggest the period based on recipe ingredients
+
     public String suggestRecipePeriod(Recipe recipe) {
         List<String> ingredients = recipe.getIngredients();
         String period = "";
 
-        // Check for ingredients that are typically associated with certain periods
+
         if (ingredients.contains("Eggs") || ingredients.contains("Oats") || ingredients.contains("Banana")) {
             period = "Breakfast";
         } else if (ingredients.contains("Chicken") || ingredients.contains("Rice") || ingredients.contains("Lentils")) {
@@ -20,11 +20,11 @@ class RecipePeriod {
         return period;
     }
 
-    // Method to suggest a period based on mood or energy level
+
     public String suggestRecipeByMood(String mood) {
         String period = "";
 
-        // Mood-based suggestion
+
         switch (mood.toLowerCase()) {
             case "energetic":
                 period = "A protein-packed recipe like a Smoothie or Oats for a boost in the morning!";
