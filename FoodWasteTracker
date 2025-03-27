@@ -14,14 +14,36 @@ class FoodWasteTracker {
             manager.recommendRecipes(ingredient);
         }
     }
-    public void displayExpiringIngredients(Map<String, Ingredient> ingredients) {
-        System.out.println("Expiring ingredients:");
-        for (Ingredient ingredient : ingredients.values()) {
-            if (ingredient.getQuantity() <= 3) { // You can adjust the threshold here
-                System.out.println(ingredient.getName() + " - Quantity: " + ingredient.getQuantity());
-            }
+
+    public void displayExpiringIngredients(Map<String, Ingredient> ingredients, Map<String, Integer> expiringIngredients) {
+    System.out.println("\n📌 Expiring & Low Quantity Ingredients:");
+
+    boolean found = false;
+    
+  
+    for (Map.Entry<String, Integer> entry : expiringIngredients.entrySet()) {
+        String name = entry.getKey();
+        int daysLeft = entry.getValue();
+
+        if (daysLeft <= 3) { 
+            System.out.println("⏳ " + name + " is expiring in " + daysLeft + " days!");
+            found = true;
         }
     }
+
+    
+    for (Ingredient ingredient : ingredients.values()) {
+        if (ingredient.getQuantity() <= 3) {
+            System.out.println("⚠️ " + ingredient.getName() + " - Low Quantity: " + ingredient.getQuantity());
+            found = true;
+        }
+    }
+
+    if (!found) {
+        System.out.println(" No ingredients are expiring or low in quantity.");
+    }
+}
+
 
 
 }
