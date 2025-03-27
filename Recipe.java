@@ -1,6 +1,6 @@
 import java.util.*;
 
-// Recipe class to represent individual recipes
+
 class Recipe {
     private String name;
     private List<String> ingredients;
@@ -25,10 +25,20 @@ class Recipe {
 
     public String getNutritionalInfo() { return nutritionalInfo; }
     public void setNutritionalInfo(String nutritionalInfo) { this.nutritionalInfo = nutritionalInfo; }
+        public int getCaloriesAsInt() {
+        try {
+            return Integer.parseInt(nutritionalInfo.replaceAll("[^0-9]", "")); 
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid calorie format for recipe: " + name);
+            return -1; 
+        }
+    }
 
     @Override
     public String toString() {
         return "Recipe: " + name + "\nIngredients: " + ingredients + "\nSteps: " + steps + "\nNutritional Info: " + nutritionalInfo;
     }
+
 }
+
 
